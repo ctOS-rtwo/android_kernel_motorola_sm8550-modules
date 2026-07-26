@@ -9,6 +9,7 @@
 #include <linux/videodev2.h>
 #include <linux/types.h>
 #include <linux/ioctl.h>
+#include <linux/time.h>
 
 /* SDE Rotator pixel format definitions */
 #define SDE_PIX_FMT_XRGB_8888 \
