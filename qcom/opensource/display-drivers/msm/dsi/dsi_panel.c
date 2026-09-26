@@ -4582,30 +4582,30 @@ static int dsi_panel_parse_local_hbm_config(struct dsi_panel *panel)
 				&(lhbm_config->lhbm_wait_for_fps_interval));
 
 		count = utils->count_u32_elems(utils->data,
-     			"qcom,mdss-dsi-panel-lhbm-not-allowed-fps-list");
+				"qcom,mdss-dsi-panel-lhbm-not-allowed-fps-list");
 
 		if (count < 0) {
-			DSI_DEBUG("[%s] no lhbm not-allowed fps list, 
-rc=%d\n",
+			DSI_DEBUG("[%s] no lhbm not-allowed fps list, rc=%d\n",
 					panel->name, count);
 			count = 0;
-			}
+		}
 
-				lhbm_config->lhbm_not_allowed_fps_list_len = count;
+		lhbm_config->lhbm_not_allowed_fps_list_len = count;
 		lhbm_config->lhbm_not_allowed_fps_list = NULL;
 
 		if (count > 0) {
 			lhbm_config->lhbm_not_allowed_fps_list = kcalloc(count,
-		            sizeof(u32), GFP_KERNEL);
+					sizeof(u32), GFP_KERNEL);
 			if (!lhbm_config->lhbm_not_allowed_fps_list)
 				return -ENOMEM;
+
 			rc = utils->read_u32_array(utils->data,
 					"qcom,mdss-dsi-panel-lhbm-not-allowed-fps-list",
 					lhbm_config->lhbm_not_allowed_fps_list,
 					count);
 			if (rc) {
-			    DSI_ERR("[%s] lhbm not allowed fps list parse failed, rc=%d\n",
-				        panel->name, rc);
+				DSI_ERR("[%s] lhbm not allowed fps list parse failed, rc=%d\n",
+						panel->name, rc);
 				kfree(lhbm_config->lhbm_not_allowed_fps_list);
 				lhbm_config->lhbm_not_allowed_fps_list = NULL;
 				lhbm_config->lhbm_not_allowed_fps_list_len = 0;
